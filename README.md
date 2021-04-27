@@ -8,4 +8,6 @@ L'esercitazione prevede l'uso esclusivo del diagramma fisico per:
 - la realizzazione dei collegamenti.
 
 I collegamenti vanno documentati con una tabella come quella proposta e condivisa sul corso Classroom.
+Link al corso: https://classroom.google.com/c/MTY0NDYwNTM0NDUw
 
+![Diagramma soluzione](./EsempioDiTabellaCollegamenti.png) 
