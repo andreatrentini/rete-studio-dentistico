@@ -35,6 +35,7 @@ Per la realizzazione del progetto è necessario eseguire le seguenti operazioni:
 1. Posizionare 2 closet (Tavolo 1 ambulatorio 1 Palazzina e Tavolo 2 ambulatorio 1 Palazzina) in Ambulatorio 1 con 1 tavolo ciascuno
 2. Posizionare 1 closet (Tavolo ambulatorio 2 Palazzina) con 2 tavoli
 3. Posizionare 2 closet (Tavolo 1 Segreteria Palazzina e Tavolo 1 Segreteria Palazzina) in Segreteria con 1 tavolo ciascuno
+   > Ricordarsi di modificare le dimensioni dei closet!
 4. Posizionare sui tavoli i Device necessari a garantire:
    - Ambulatorio 1:
      - 1 postazione medico,
