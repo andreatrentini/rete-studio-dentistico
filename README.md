@@ -18,8 +18,8 @@ Link al corso: https://classroom.google.com/c/MTY0NDYwNTM0NDUw
 Per la realizzazione del progetto è necessario eseguire le seguenti operazioni:
 #### Ambienti
 1. Aggiungere un *New Closet* all'ambulatorio 1, assegnare come nome **Tavolo 1 ambulatorio Sede 1** e successivamente aggiungere un tavolo
-> Attenzione: modificare le misure del closet impostando una larghezza di 1 metro, una lunghezza di 2 ed un'altezza di 1. 
-> L'operazione dovrà essere ripetuta per ogni nuovo Closet aggiunto al diagramma in modo da rispettare le dimensioni reali degli elementi. 
+  > Attenzione: modificare le misure del closet impostando una larghezza di 1 metro, una lunghezza di 2 ed un'altezza di 1. 
+  > L'operazione dovrà essere ripetuta per ogni nuovo Closet aggiunto al diagramma in modo da rispettare le dimensioni reali degli elementi. 
 2. Aggiungere tutti i dispositivi elencati nella tabella della scheda Sede (Tabella collegamenti su Classroom)
 3. Effettuare i collegamenti fra i device e le prese a muro
 4. Posizionare 1 access point AP-PT-N in sala di aspetto e collegare l'apparato alla presa a muro
@@ -29,7 +29,7 @@ Per la realizzazione del progetto è necessario eseguire le seguenti operazioni:
 2. Aggiungere due modulo fibra
 3. Aggiungere due alimentatori
 4. Collegare le porte del patch panel in rame alle porte dello switch secondo le indicazioni riportate in tabella
-> Per una gestione successiva più semplice, è preferibile usare patch-cord dello stesso colore delle VLAN riporate in tabella
+  > Per una gestione successiva più semplice, è preferibile usare patch-cord dello stesso colore delle VLAN riporate in tabella
 ### Palazzina
 #### Ambienti
 1. Posizionare 2 closet (Tavolo 1 ambulatorio 1 Palazzina e Tavolo 2 ambulatorio 1 Palazzina) in Ambulatorio 1 con 1 tavolo ciascuno
@@ -57,5 +57,5 @@ Per la realizzazione del progetto è necessario eseguire le seguenti operazioni:
 3. usare due bretelline in fibra per collegare le porte di PT-Empty al patch panel in fibra
 4. Usare due patch-cord per collegare PT_EMPTY e 2960 (si configureranno successivamente le porte in etherchannel)
 5. Effettuare tutti i collegamenti fra patch panel in rame e switch 2960 documentando le connessioni in un nuovo foglio del file Google sheet dedicato ai collegamenti presenti in Palazzina
-> Per una gestione successiva più semplice, è preferibile usare patch-cord dello stesso colore delle VLAN riporate in tabella
+  > Per una gestione successiva più semplice, è preferibile usare patch-cord dello stesso colore delle VLAN riporate in tabella
 
