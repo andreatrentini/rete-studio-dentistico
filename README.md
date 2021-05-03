@@ -100,20 +100,21 @@ Utilizzando un laptop (NBAdmin), connettersi qgli switch della rete con cavo con
 ### Etherchannel
 Creare i channel-group secondo le indicazioni riportate nella tabella di progetto
 > Attenzione: per definire un channel group con interfacce che fanno parte di banchi diversi, utilizzare il comando  
-> interface range interfaccia 1, interfaccia 2 (sostituire con i nomi reali delle interfacce)
-> channel-group 1 mode on
+> interface range interfaccia 1, interfaccia 2 (sostituire con i nomi reali delle interfacce)  
+> channel-group 1 mode on  
 
 ### Trunk
 Attivare la modalità trunk per i collegamentoi fra switch, seonco le indicazioni riportate nella tabella di progetto.
 > Attenzione: configurare la modalità trunk sulle interfacce create con etherchannel:  
-> int Po1
-> int Po2
-> ...
+> interface Po1  
+> interface Po2  
+> ...  
 #### SWL3Sede
 > switchport trunk encapsulation dot1q  
-> switchport mode trunk
+> switchport mode trunk. 
+
 #### SWBackbone e SWPalazzina
-> switchport mode trunk
+> switchport mode trunk  
 
 ### VTP
 > vtp version 2  
