@@ -59,3 +59,39 @@ Per la realizzazione del progetto è necessario eseguire le seguenti operazioni:
 5. Effettuare tutti i collegamenti fra patch panel in rame e switch 2960 documentando le connessioni in un nuovo foglio del file Google sheet dedicato ai collegamenti presenti in Palazzina
    > Per una gestione successiva più semplice, è preferibile usare patch-cord dello stesso colore delle VLAN riporate in tabella
 
+## Fase 2 - configurazione apparati
+
+### Configurazione di base
+
+Utilizzando un laptop (NBAdmin), connettersi qgli switch della rete con cavo console e, attraverso Terminal, effettuare le seguenti configurazioni (utilizzare i nomi riportati nella tabella di progetto):
+
+- hostname
+  > hostname ...
+- message of the day
+  > banner motd #Accesso consentito solo al personale autorizzato.#
+- impostare *cisco* come secret per il privileged mode 
+  > enable secret cisco
+- attivare il servizio di crittografia delle password
+  > service password-encryption
+- bloccare il login per 120 secondi dopo 3 tentativi falliti in 60 secondi
+  > login block-for 120 attempts 3 within 60
+- configurare la sicurezza per la linea console 0:
+  > line con 0
+  > password cisco
+  > login
+- configurare le linee vty da 0 a 4:
+  > line vty 0 4
+  > login local
+  > transport input ssh
+- disattivare le linee vty da 5 a 15
+  > line vty 5 15
+  > no login
+  > transport input none
+- impostare un nome di dominio
+  > ip domain-name studiodentistico.it
+- creare una chiave rsa da utilizzare per le connessioni ssh:
+  > crypto key generate rsa ...
+- creare un account utente da utilizzare per le connessioni ssh:
+  > username admin privilege 15 secret cisco
+
+### Etherchannel
