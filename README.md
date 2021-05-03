@@ -65,7 +65,7 @@ Per la realizzazione del progetto è necessario eseguire le seguenti operazioni:
 
 Utilizzando un laptop (NBAdmin), connettersi qgli switch della rete con cavo console e, attraverso Terminal, effettuare le seguenti configurazioni (utilizzare i nomi riportati nella tabella di progetto):
 
-- hostname
+- hostname  
   `hostname ...` 
 - message of the day
   > banner motd #Accesso consentito solo al personale autorizzato.#
