@@ -76,17 +76,17 @@ Utilizzando un laptop (NBAdmin), connettersi qgli switch della rete con cavo con
 - bloccare il login per 120 secondi dopo 3 tentativi falliti in 60 secondi
   > login block-for 120 attempts 3 within 60
 - configurare la sicurezza per la linea console 0:
-  > line con 0
-  > password cisco
-  > login
+  > line con 0  
+  > password cisco  
+  > login. 
 - configurare le linee vty da 0 a 4:
-  > line vty 0 4
-  > login local
-  > transport input ssh
+  > line vty 0 4  
+  > login local  
+  > transport input ssh  
 - disattivare le linee vty da 5 a 15
-  > line vty 5 15
-  > no login
-  > transport input none
+  > line vty 5 15  
+  > no login  
+  > transport input none  
 - impostare un nome di dominio
   > ip domain-name studiodentistico.it
 - creare una chiave rsa da utilizzare per le connessioni ssh:
