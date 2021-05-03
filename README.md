@@ -93,5 +93,76 @@ Utilizzando un laptop (NBAdmin), connettersi qgli switch della rete con cavo con
   > crypto key generate rsa ...
 - creare un account utente da utilizzare per le connessioni ssh:
   > username admin privilege 15 secret cisco
+- disattivare tutte le porte degli switch non utilizzate
+  > interfacce fa...  
+  > shutdown
 
 ### Etherchannel
+Creare i channel-group secondo le indicazioni riportate nella tabella di progetto
+> Attenzione: per definire un channel group con interfacce che fanno parte di banchi diversi, utilizzare il comando  
+> interface range interfaccia 1, interfaccia 2 (sostituire con i nomi reali delle interfacce)
+> channel-group 1 mode on
+
+### Trunk
+Attivare la modalità trunk per i collegamentoi fra switch, seonco le indicazioni riportate nella tabella di progetto.
+> Attenzione: configurare la modalità trunk sulle interfacce create con etherchannel:  
+> int Po1
+> int Po2
+> ...
+#### SWL3Sede
+> switchport trunk encapsulation dot1q  
+> switchport mode trunk
+#### SWBackbone e SWPalazzina
+> switchport mode trunk
+
+### VTP
+> vtp version 2  
+> vtp domain studiodentistico  
+> vtp password cisco  
+  > SWBackbone e SWPalazzina  
+  >  vtp mode client
+
+### VLAN
+Su SWL3Sede creare le VLAN riportate nella tabella di progetto
+> vlan 10  
+> name Medici  
+> vlan 20  
+> name ...  
+> ...  
+Assegnare le porte degli switch alle vlan secondo quanto riportato nelle tabelle di progetto.
+> interface fa0/1  
+> switchport mode access
+> switchport access vlan ...
+
+### Indirizzi IP VLAN
+Su SWL3Sede assegnare gli indirizzi IP previsti per il DefaultGateway alle rispettive VLAN seco le indicazioni riportate nella tabella di progetto.
+> int vlan 10
+> ip address 192.168.10.254 255.255.255.0
+> ...
+
+### Indirizzi IP apparati
+Assegnare a SWBackbone e SWPalazzina gli indirizzi IP riportati nella tabella di progetto.
+> interface vlan 200  
+> ip address ... 
+
+### DHCP
+Su SWL3Sede definire i seguenti pool in dhcp per la configurazione dinamica dei dispositivi endpoint.
+> ip dhcp pool Medici  
+> network 192.168.10.0 255.255.255.0  
+> default-gateway 192.168.10.254  
+  
+> ip dhcp pool Segreteria  
+> network 192.168.20.0 255.255.255.0  
+> default-gateway 192.168.20.254  
+  
+> ip dhcp pool Stampanti  
+> network 192.168.30.0 255.255.255.0  
+> default-gateway 192.168.30.254  
+  
+> ip dhcp pool WiFi  
+> network 192.168.40.0 255.255.255.0  
+> default-gateway 192.168.40.254  
+
+### Indirizzi IP endpoint
+Utilizzando DHCP assegnare la configurazione ai dispositivi endpoint (ad eccezione dei telefoni VoIP).
+   
