@@ -121,7 +121,7 @@ Attivare la modalità trunk per i collegamentoi fra switch, seonco le indicazion
 > vtp domain studiodentistico  
 > vtp password cisco  
   >> SWBackbone e SWPalazzina:  
-     > vtp mode client
+  >>> vtp mode client
 
 ### VLAN
 Su SWL3Sede creare le VLAN riportate nella tabella di progetto
