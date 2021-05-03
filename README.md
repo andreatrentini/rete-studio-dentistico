@@ -130,10 +130,11 @@ Su SWL3Sede creare le VLAN riportate nella tabella di progetto
 > vlan 20  
 > name ...  
 > ...  
+
 Assegnare le porte degli switch alle vlan secondo quanto riportato nelle tabelle di progetto.
 > interface fa0/1  
-> switchport mode access
-> switchport access vlan ...
+> switchport mode access  
+> switchport access vlan ...  
 
 ### Indirizzi IP VLAN
 Su SWL3Sede assegnare gli indirizzi IP previsti per il DefaultGateway alle rispettive VLAN seco le indicazioni riportate nella tabella di progetto.
