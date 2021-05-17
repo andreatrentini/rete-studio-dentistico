@@ -171,7 +171,21 @@ Utilizzando DHCP assegnare la configurazione ai dispositivi endpoint (ad eccezio
 ## Fase 3 - Configurazione VoIP
 Per attivare i servizi VoIP all'interno dello studio dentistico è necessario aggiungere alla rete un dispositivo che sia in grado di fornire servizi di telefonia. Cisco fornisce una licenza per i propri router che, attivata, rende disponibili tali funzionalità.  
 In Packet Tracer è presente un router che presenta tale licenza attivata ed è il Cisco 2018 IoS15.
-Come primo step andiamo quindi ad installare il router 2011 IoS15 nell'armadio di rete della Sede.
+Come primo step andiamo quindi ad installare il router 2011 IoS15 nell'armadio di rete della Sede, ed assegnamo come nome **CMERouter** (Call Manager Express Router). 
+![Router Cisco 2811 IoS15](./RouterCisco2811.png)   
+Come si vede dalla figura, e riportato nel foglio Google dei collegamenti, è necessario connettere la porta Fa0/0 del router con la porta Gi1/0/24 dello switch L3.  
 
+### Configurazione di base
+Utilizzando una connessione **Terminal** sulla porta **console**, procedere alla configurazione di base del router, come precedentemente fatto per gli switch presenti nella rete.
 
+### Configurazione IP
+I servizi di telefonia prevedono l'uso di una VLAN dedicata alla quale aggiungere tutti gli apparecchi VoIP. Per far sì che le comunicazioni fra telefoni e router funzionino correttamente, è necessario che la VLAN sia trasportata fino al router attraverso un collegamento trunk con lo switch layer 3 della sede. E' inoltre necessario che il router acceda anche alla VLAN 200, predisposta per la gestione degli apparati.
+
+> interface FastEthernet0/0.100
+  > encapsulation dot1Q 100
+  > ip address 192.168.100.254 255.255.255.0
+
+> interface FastEthernet0/0.200
+  > encapsulation dot1Q 200
+  > ip address 192.168.200.253 255.255.255.0
    
