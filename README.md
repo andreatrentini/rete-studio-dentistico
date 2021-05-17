@@ -150,20 +150,20 @@ Assegnare a SWBackbone e SWPalazzina gli indirizzi IP riportati nella tabella di
 ### DHCP
 Su SWL3Sede definire i seguenti pool in dhcp per la configurazione dinamica dei dispositivi endpoint.
 > ip dhcp pool Medici  
-> network 192.168.10.0 255.255.255.0  
-> default-gateway 192.168.10.254  
+  >> network 192.168.10.0 255.255.255.0  
+  >> default-gateway 192.168.10.254  
   
 > ip dhcp pool Segreteria  
-> network 192.168.20.0 255.255.255.0  
-> default-gateway 192.168.20.254  
+  >> network 192.168.20.0 255.255.255.0  
+  >> default-gateway 192.168.20.254  
   
 > ip dhcp pool Stampanti  
-> network 192.168.30.0 255.255.255.0  
-> default-gateway 192.168.30.254  
+  >> network 192.168.30.0 255.255.255.0  
+  >> default-gateway 192.168.30.254  
   
 > ip dhcp pool WiFi  
-> network 192.168.40.0 255.255.255.0  
-> default-gateway 192.168.40.254  
+  >> network 192.168.40.0 255.255.255.0  
+  >> default-gateway 192.168.40.254  
 
 ### Indirizzi IP endpoint
 Utilizzando DHCP assegnare la configurazione ai dispositivi endpoint (ad eccezione dei telefoni VoIP).
@@ -187,28 +187,28 @@ Definita la sub-interface, le si assegna l'indirizzo IP desiderato.
 **NB: ricordarsi di attivare l'interfaccia fisica!**   
 
 > interface FastEthernet0/0.100  
-  > encapsulation dot1Q 100  
-  > ip address 192.168.100.254 255.255.255.0  
+  >> encapsulation dot1Q 100  
+  >> ip address 192.168.100.254 255.255.255.0  
 
 > interface FastEthernet0/0.200  
-  > encapsulation dot1Q 200  
-  > ip address 192.168.200.253 255.255.255.0  
+  >> encapsulation dot1Q 200  
+  >> ip address 192.168.200.253 255.255.255.0  
 
 > Interface FastEthernet0/0  
-  > no shutdown  
+  >> no shutdown  
 
 Per quanto riguarda lo swicth SWL3Sede, è necessario configurare la porta Gi1/0/24 in modalità trunk.  
 > interface GigabitEthernet1/0/1  
-  > switchport trunk encapsulation dot1q  
-  > switchport mode trunk  
+  >> switchport trunk encapsulation dot1q  
+  >> switchport mode trunk  
   
 ### DHCP Voice
 Sul server CMERouter, definire un pool di indirizzi per la configurazione IP dinamica dei dispositivi telefonici.  
 E' importante notare che, a differenza di quanto avviene per i pool definiti per i PC, è necessario aggiungere una opzione dedicata appositamente alla configurazione dei dispositivi VoIP.
 > ip dhcp pool VoIP  
-  > network 192.168.100.0 255.255.255.0  
-  > default-router 192.168.100.254  
-  > option 150 ip 192.168.100.254 (indirizzo IP del Call Manager Express Router)  
+  >> network 192.168.100.0 255.255.255.0  
+  >> default-router 192.168.100.254  
+  >> option 150 ip 192.168.100.254 (indirizzo IP del Call Manager Express Router)  
 
 ### Telephony service
 Per la configurazione dei servizi telefoni VoIP all'interno della rete, è necessario definire:
@@ -218,39 +218,39 @@ Per la configurazione dei servizi telefoni VoIP all'interno della rete, è neces
 - modalità di registrazione dei telefoni al servizio (manuale o automatica)
   
 > telephony-service (attiva la modalità di configurazione servizi telefonici)  
-  > max-ephones 10 (numero massimo di dispositivi)  
-  > max-dn 10 (numero massimo di numeri telefonici presenti in rubrica)  
-  > ip source-address 192.168.100.254 port 2000 (Indirizzo e porta utilizzata dal Call Manager Express Router)  
-  > auto assign 1 to 10 (modalità automatica di registrazione degli apparecchi)  
-  > exit
+  >> max-ephones 10 (numero massimo di dispositivi)  
+  >> max-dn 10 (numero massimo di numeri telefonici presenti in rubrica)  
+  >> ip source-address 192.168.100.254 port 2000 (Indirizzo e porta utilizzata dal Call Manager Express Router)  
+  >> auto assign 1 to 10 (modalità automatica di registrazione degli apparecchi)  
+  >> exit
 >  
 > ephone-dn 1 (Configurazione della rubrica telefonica)  
-  > number 501 (Numero interno assegnato al primo apparecchio registrato)  
+  >> number 501 (Numero interno assegnato al primo apparecchio registrato)  
 >  
 > ephone-dn 2 (Configurazione della rubrica telefonica)  
-  > number 502 (Numero interno assegnato al secondo apparecchio registrato)  
+  >> number 502 (Numero interno assegnato al secondo apparecchio registrato)  
 >  
 > ephone-dn 3 (Configurazione della rubrica telefonica)  
-  > number 503 (Numero interno assegnato al terzo apparecchio registrato)  
+  >> number 503 (Numero interno assegnato al terzo apparecchio registrato)  
 > 
 > ephone-dn 4 (Configurazione della rubrica telefonica)  
-  > number 504 (Numero interno assegnato al quarto apparecchio registrato)  
+  >> number 504 (Numero interno assegnato al quarto apparecchio registrato)  
 > 
 > ephone-dn 5 (Configurazione della rubrica telefonica)  
-  > number 505 (Numero interno assegnato al quinto apparecchio registrato)  
+  >> number 505 (Numero interno assegnato al quinto apparecchio registrato)  
 > 
 > ephone-dn 6 (Configurazione della rubrica telefonica)  
-  > number 506 (Numero interno assegnato al sesto apparecchio registrato)  
+  >> number 506 (Numero interno assegnato al sesto apparecchio registrato)  
 > 
 > ephone-dn 7 (Configurazione della rubrica telefonica)  
-  > number 507 (Numero interno assegnato al settimo apparecchio registrato)   
+  >> number 507 (Numero interno assegnato al settimo apparecchio registrato)   
 
 ### VLAN Voice
 Prima di procedere con la registrazione dei telefoni, è necessario aggiungere le porte degli switch alle quali sono connesse gli apparecchi telefonici alla VLAN dedicata ai servizi voce, secondo quanto riportato nelle tabelle del foglio Google predisposto.  
 NB: prestare attenzione all'opzione voice del comando da utilizzare per l'aggiunta della porta alla VLAN.
   
 > interface GigabitEthernet1/0/13  
-  > switchport mode access  
-  > switchport **voice** vlan 100  
+  >> switchport mode access  
+  >> switchport **voice** vlan 100  
 
 Ripetere l'operazione per tutte le altre porte, oppure utilizzare il comando *interface range ...*.
