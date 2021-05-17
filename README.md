@@ -254,3 +254,6 @@ NB: prestare attenzione all'opzione voice del comando da utilizzare per l'aggiun
   >> switchport **voice** vlan 100  
 
 Ripetere l'operazione per tutte le altre porte, oppure utilizzare il comando *interface range ...*.
+
+### Registrazione telefoni
+Aggiungere l'alimentatore ai telefoni in base al numero che si vuole assegnare all'apparato. Prima di procedere con l'accensione dell'apparecchio successivo, attendere che la configurazione sia completata.  
