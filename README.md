@@ -180,8 +180,11 @@ Come si vede dalla figura, e riportato nel foglio Google dei collegamenti, è ne
 ### Configurazione di base
 Utilizzando una connessione **Terminal** sulla porta **console**, procedere alla configurazione di base del router, come precedentemente fatto per gli switch presenti nella rete.
 
-### Configurazione IP
-I servizi di telefonia prevedono l'uso di una VLAN dedicata alla quale aggiungere tutti gli apparecchi VoIP. Per far sì che le comunicazioni fra telefoni e router funzionino correttamente, è necessario che la VLAN sia trasportata fino al router attraverso un collegamento trunk con lo switch layer 3 della sede. E' inoltre necessario che il router acceda anche alla VLAN 200, predisposta per la gestione degli apparati.
+### Configurazione VLAN - IP
+I servizi di telefonia prevedono l'uso di una VLAN dedicata alla quale aggiungere tutti gli apparecchi VoIP. Per far sì che le comunicazioni fra telefoni e router funzionino correttamente, è necessario che la VLAN sia trasportata fino al router attraverso un collegamento trunk con lo switch layer 3 della sede. E' inoltre necessario che il router acceda anche alla VLAN 200, predisposta per la gestione degli apparati.  
+La configurazione si realizza attraverso la creazione di una sub-interface per ognuna delle VLAN che si intende trasportare, definendo il protocollo da utilizzare per l'incapsulamento e la VLAN trasportata.  
+Definita la sub-interface, le si assegna l'indirizzo IP desiderato.
+**NB: ricordarsi di attivare l'interfaccia fisica!**   
 
 > interface FastEthernet0/0.100  
   > encapsulation dot1Q 100  
@@ -190,4 +193,64 @@ I servizi di telefonia prevedono l'uso di una VLAN dedicata alla quale aggiunger
 > interface FastEthernet0/0.200  
   > encapsulation dot1Q 200  
   > ip address 192.168.200.253 255.255.255.0  
-   
+
+> Interface FastEthernet0/0  
+  > no shutdown  
+
+Per quanto riguarda lo swicth SWL3Sede, è necessario configurare la porta Gi1/0/24 in modalità trunk.  
+> interface GigabitEthernet1/0/1  
+  > switchport trunk encapsulation dot1q  
+  > switchport mode trunk  
+  
+### DHCP Voice
+Sul server CMERouter, definire un pool di indirizzi per la configurazione IP dinamica dei dispositivi telefonici.  
+E' importante notare che, a differenza di quanto avviene per i pool definiti per i PC, è necessario aggiungere una opzione dedicata appositamente alla configurazione dei dispositivi VoIP.
+> ip dhcp pool VoIP  
+  > network 192.168.100.0 255.255.255.0  
+  > default-router 192.168.100.254  
+  > option 150 ip 192.168.100.254 (indirizzo IP del Call Manager Express Router)  
+
+### Telephony service
+Per la configurazione dei servizi telefoni VoIP all'interno della rete, è necessario definire:
+- numnero massimo di telefoni gestiti
+- numero massimo di numeri telefonici
+- indirizzo IP del Call Manager Express Router e porta di rete utilizzata per il servizio
+- modalità di registrazione dei telefoni al servizio (manuale o automatica)
+  
+> telephony-service (attiva la modalità di configurazione servizi telefonici)  
+  > max-ephones 10 (numero massimo di dispositivi)  
+  > max-dn 10 (numero massimo di numeri telefonici presenti in rubrica)  
+  > ip source-address 192.168.100.254 port 2000 (Indirizzo e porta utilizzata dal Call Manager Express Router)  
+  > auto assign 1 to 10 (modalità automatica di registrazione degli apparecchi)  
+  > exit
+>  
+> ephone-dn 1 (Configurazione della rubrica telefonica)  
+  > number 501 (Numero interno assegnato al primo apparecchio registrato)  
+>  
+> ephone-dn 2 (Configurazione della rubrica telefonica)  
+  > number 502 (Numero interno assegnato al secondo apparecchio registrato)  
+>  
+> ephone-dn 3 (Configurazione della rubrica telefonica)  
+  > number 503 (Numero interno assegnato al terzo apparecchio registrato)  
+> 
+> ephone-dn 4 (Configurazione della rubrica telefonica)  
+  > number 504 (Numero interno assegnato al quarto apparecchio registrato)  
+> 
+> ephone-dn 5 (Configurazione della rubrica telefonica)  
+  > number 505 (Numero interno assegnato al quinto apparecchio registrato)  
+> 
+> ephone-dn 6 (Configurazione della rubrica telefonica)  
+  > number 506 (Numero interno assegnato al sesto apparecchio registrato)  
+> 
+> ephone-dn 7 (Configurazione della rubrica telefonica)  
+  > number 507 (Numero interno assegnato al settimo apparecchio registrato)   
+
+### VLAN Voice
+Prima di procedere con la registrazione dei telefoni, è necessario aggiungere le porte degli switch alle quali sono connesse gli apparecchi telefonici alla VLAN dedicata ai servizi voce, secondo quanto riportato nelle tabelle del foglio Google predisposto.  
+NB: prestare attenzione all'opzione voice del comando da utilizzare per l'aggiunta della porta alla VLAN.
+  
+> interface GigabitEthernet1/0/13  
+  > switchport mode access  
+  > switchport **voice** vlan 100  
+
+Ripetere l'operazione per tutte le altre porte, oppure utilizzare il comando *interface range ...*.
