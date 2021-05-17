@@ -257,3 +257,5 @@ Ripetere l'operazione per tutte le altre porte, oppure utilizzare il comando *in
 
 ### Registrazione telefoni
 Aggiungere l'alimentatore ai telefoni in base al numero che si vuole assegnare all'apparato. Prima di procedere con l'accensione dell'apparecchio successivo, attendere che la configurazione sia completata.  
+  
+![Telefono VoIP configurato](./TelefonoVoIPconfigurato.png)   
