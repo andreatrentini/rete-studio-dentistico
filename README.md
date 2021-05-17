@@ -167,4 +167,11 @@ Su SWL3Sede definire i seguenti pool in dhcp per la configurazione dinamica dei 
 
 ### Indirizzi IP endpoint
 Utilizzando DHCP assegnare la configurazione ai dispositivi endpoint (ad eccezione dei telefoni VoIP).
+
+## Fase 3 - Configurazione VoIP
+Per attivare i servizi VoIP all'interno dello studio dentistico è necessario aggiungere alla rete un dispositivo che sia in grado di fornire servizi di telefonia. Cisco fornisce una licenza per i propri router che, attivata, rende disponibili tali funzionalità.  
+In Packet Tracer è presente un router che presenta tale licenza attivata ed è il Cisco 2018 IoS15.
+Come primo step andiamo quindi ad installare il router 2011 IoS15 nell'armadio di rete della Sede.
+
+
    
